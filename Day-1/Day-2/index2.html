@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Product Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* Default: stack vertically */
+      gap: 20px;
+    }
+
+    /* Larger screens: 2 cards per row */
+    @media (min-width: 600px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktops: 3 cards per row */
+    @media (min-width: 900px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #222;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #007BFF;
+      margin: 5px 0;
+    }
+
+    .stock {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Product Catalog</h1>
+  <div class="product-grid" id="productGrid"></div>
+
+  <script>
+    let products = [
+      { id: 401, name: "Wireless Mouse", price: 29, category: "Accessories", stock: 150, rating: 4.5 },
+      { id: 402, name: "Portable Fan", price: 19, category: "Appliances", stock: 40, rating: 4.3 },
+      { id: 403, name: "Resistance Bands", price: 15, category: "Fitness", stock: 120, rating: 4.9 },
+      { id: 404, name: "Floor Lamp", price: 99, category: "Furniture", stock: 8, rating: 4.2 },
+      { id: 405, name: "Tablet", price: 199, category: "Electronics", stock: 25, rating: 4.7 }
+    ];
+
+    const grid = document.getElementById("productGrid");
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      card.innerHTML = `
+        <h2>${product.name}</h2>
+        <p class="price">$${product.price}</p>
+        <p class="stock">Stock: ${product.stock}</p>
+      `;
+
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>

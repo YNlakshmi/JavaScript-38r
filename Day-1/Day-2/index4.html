@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* Mobile: 1 column */
+      gap: 20px;
+    }
+
+    /* Tablet */
+    @media (min-width: 600px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 900px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      color: #007BFF;
+      margin: 5px 0;
+    }
+
+    .category {
+      font-size: 14px;
+      color: #666;
+      margin: 5px 0;
+    }
+
+    .rating {
+      font-size: 14px;
+      color: #f39c12;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Product Catalog</h1>
+  <div class="product-grid" id="productGrid"></div>
+
+  <script>
+    let products = [
+      { id: 1001, name: "Noise Cancelling Headphones", price: 349, category: "Electronics", stock: 25, rating: 4.9 },
+      { id: 1002, name: "Air Fryer", price: 129, category: "Appliances", stock: 15, rating: 4.6 },
+      { id: 1003, name: "Cycling Helmet", price: 79, category: "Fitness", stock: 60, rating: 4.8 },
+      { id: 1004, name: "TV Stand", price: 199, category: "Furniture", stock: 12, rating: 4.4 },
+      { id: 1005, name: "Smartphone Case", price: 19, category: "Accessories", stock: 100, rating: 4.5 }
+    ];
+
+    const grid = document.getElementById("productGrid");
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+
+      card.innerHTML = `
+        <h2>${product.name}</h2>
+        <p class="price">$${product.price}</p>
+        <p class="category">${product.category}</p>
+        <p class="rating">⭐ ${product.rating}</p>
+      `;
+
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
